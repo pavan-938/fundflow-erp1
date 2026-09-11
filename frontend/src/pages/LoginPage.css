@@ -1,0 +1,94 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 36%),
+    linear-gradient(160deg, #0f172a 0%, #1e293b 48%, #0b1220 100%);
+}
+
+.login-showcase {
+  color: white;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-showcase h1 {
+  margin: 0.75rem 0 0.85rem;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  max-width: 12ch;
+}
+
+.login-showcase p {
+  margin: 0;
+  max-width: 36ch;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+}
+
+.login-panel {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.login-card {
+  width: min(420px, 100%);
+}
+
+.login-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.55rem;
+}
+
+.login-card .lede {
+  margin: 0 0 1.25rem;
+  color: var(--ff-slate-500);
+}
+
+.login-form {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.password-row {
+  position: relative;
+}
+
+.password-row .toggle {
+  position: absolute;
+  right: 0.55rem;
+  top: 2.15rem;
+}
+
+.form-error {
+  border-radius: 10px;
+  background: var(--ff-danger-bg);
+  color: var(--ff-danger);
+  padding: 0.75rem 0.85rem;
+  font-size: 0.92rem;
+}
+
+.login-meta {
+  margin-top: 1rem;
+  color: var(--ff-slate-500);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .login-showcase {
+    min-height: 220px;
+    padding: 1.5rem;
+  }
+
+  .login-showcase h1 {
+    max-width: none;
+  }
+}
