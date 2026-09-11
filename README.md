@@ -145,9 +145,11 @@ Open the Vite URL shown in the terminal (commonly `http://localhost:5173` or `51
 
 | Location | Script | Purpose |
 |----------|--------|---------|
-| `backend` | `npm run migrate` | Apply SQL migrations |
-| `backend` | `npm run seed` | Seed demo users and sample data |
-| `backend` | `npm run db:reset` | Migrate + seed |
+| `backend` | `npm run migrate` | Apply SQL migrations (local/dev via `tsx`) |
+| `backend` | `npm run db:migrate` | Apply SQL migrations (production via compiled `dist/`) — **non-destructive** |
+| `backend` | `npm run seed` | Seed demo users and sample data (local/dev) |
+| `backend` | `npm run db:seed` | Seed demo data (production via compiled `dist/`) — **wipes business rows** |
+| `backend` | `npm run db:reset` | Local migrate + seed only — **never use on Neon/production** |
 | `backend` | `npm run build` | Compile TypeScript to `dist/` |
 | `backend` | `npm start` | Run compiled API (`node dist/server.js`) |
 | `backend` | `npm test` | Vitest suite |
@@ -161,7 +163,7 @@ Open the Vite URL shown in the terminal (commonly `http://localhost:5173` or `51
 
 | Variable | Required | Example / notes |
 |----------|----------|-----------------|
-| `DATABASE_URL` | Yes | `postgresql://USER:PASSWORD@HOST:PORT/DB` |
+| `DATABASE_URL` | Yes | Local: `postgresql://…@localhost:5433/fundflow`. Hosted Neon: `postgresql://USER:PASSWORD@HOST/DATABASE?sslmode=require` (set only in host env, e.g. Render → `DATABASE_URL`) |
 | `JWT_SECRET` | Yes | Long random secret (never commit real values) |
 | `JWT_EXPIRES_IN` | No | Default `8h` |
 | `CORS_ORIGINS` | No | Comma-separated origins. Dev default includes localhost Vite ports. Production: deployed frontend origin only. Do **not** use `*` with credentials. |
