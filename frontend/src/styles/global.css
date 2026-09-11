@@ -42,6 +42,8 @@ html,
 body,
 #root {
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -69,31 +71,44 @@ a {
 
 .app-shell {
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
   display: grid;
-  grid-template-columns: var(--ff-sidebar-width) 1fr;
+  grid-template-columns: var(--ff-sidebar-width) minmax(0, 1fr);
   transition: grid-template-columns 0.2s ease;
+  overflow-x: clip;
 }
 
 .app-shell.collapsed {
-  grid-template-columns: var(--ff-sidebar-collapsed) 1fr;
+  grid-template-columns: var(--ff-sidebar-collapsed) minmax(0, 1fr);
 }
 
 .app-main {
   min-width: 0;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
 }
 
 .app-content {
   padding: 1.5rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .page-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.25rem;
+  min-width: 0;
+}
+
+.page-header > * {
+  min-width: 0;
 }
 
 .page-header h1 {
@@ -113,10 +128,14 @@ a {
   border: 1px solid var(--ff-slate-200);
   border-radius: var(--ff-radius);
   box-shadow: var(--ff-shadow);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .card-body {
   padding: 1.1rem 1.2rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .btn {
@@ -244,6 +263,9 @@ a {
 
 .table-wrap {
   overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 .data-table {
@@ -351,7 +373,7 @@ a {
 @media (max-width: 960px) {
   .app-shell,
   .app-shell.collapsed {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .app-content {
@@ -363,18 +385,19 @@ a {
     align-items: stretch;
   }
 
-  .topbar {
-    gap: 0.5rem;
-  }
-
   .table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .topbar-left > div span {
     display: none;
+  }
+
+  .app-content {
+    padding: 0.85rem;
   }
 }
